@@ -3,69 +3,70 @@
 //!!!!!!is the Js file pluged into the html!!!!
 ////start     global variablils    start
 //section tittle id
-var pictuers = document.getElementById(pictuersWorking);
+var pictures = document.getElementById('pictures');
 //image sorce 123
-var choice1 = document.getElementById(choice1)
-var choice2 = document.getElementById(choice2)
-var choice3 = document.getElementById(choice3)
-
+var choice1 = document.getElementById('choice1')
+var choice2 = document.getElementById('choice2')
+var choice3 = document.getElementById('choice3')
+CreatChoice.allImage = [];
 //null signifies a non set open value to the first impuut ?
-var choice1 = null;
-var choice2 = null;
-var choice3 = null;
+choice1.src = null;
+choice2.src = null;
+choice3.src = null;
 
 //datta extractor
 var peoplesChoice = 0;
 //
 ////end   global variables  end  //
-
+console.log('start works')
 //constructoer reconstruction
 //funtio name and properties (atributs 'itsname' , theimage)
-function creatChoice = (name, image){
+function CreatChoice (name, image){
   //properties in object
   this.name = name;
-  this.image = Image;
+  this.image = image;
   this.click = 0;
   this.view =0;
   
- creatChoice.allImage.push [this];
+ CreatChoice.allImage.push (this);
 }
+
 
 //random source generator from array creatchoice.allimages in constructor
 function choiceGeni(){
-  var raySelect = Math.floor(Math.random()* creatChoice.allImage.length );
+  var raySelect = Math.floor(Math.random()* CreatChoice.allImage.length );
   console.log('raySelectt', raySelect)
   return raySelect;
 }
-///end funtion raySelect is the random image.
+// ///end funtion raySelect is the random image.
 
-// do somethiig with that photo
-//start funtion render start  give the placeholders sometihging to hold
+// // do somethiig with that photo
+// //start funtion render start  give the placeholders sometihging to hold
 function renderChoice(){
   do {
-  choice1Index =randomPic();
-  choice2Index =randomPic();
-  choice3Index =randomPic();
+  var choice1Index =choiceGeni();
+  var choice2Index =choiceGeni();
+  var choice3Index =choiceGeni();
 
   // the 3 part nolove solution needs help would a swich be apopriate. 
-}while (choice2 === choice2 && choice3)
+}while (choice1Index === choice2Index || choice1Index === choice3Index || choice2Index === choice3Index);
 
 
 //add one tothe views of the object Property view=0 fo rthe data exctractor peoplsChoice.
 
-choice1.allImage[choice1].view++;
-choice2.allImage[choice2].view++;
-choice3.allImage[choice3].view++;
+// choice1.allImage[choice1].view++;
+// choice2.allImage[choice2].view++;
+// choice3.allImage[choice3].view++;
 
 //send it to the html to be a choice
-choice1.src = creatChoice.allImage[choice1Index].image;
-choice2.src = creatChoice.allImage[choice2Index].image;
-choice3.src = creatChoice.allImage[choice3Index].image;
+choice1.src = CreatChoice.allImage[choice1Index].image;
+choice2.src = CreatChoice.allImage[choice2Index].image;
+choice3.src = CreatChoice.allImage[choice3Index].image;
 
 }
-//end funtion renderchoice  end
+// //end funtion renderchoice  end
 
-/// start   handle the user choice     start
+// /// start   handle the user choice     start
 
 
 var handleClickOnChoice = function(event){
@@ -88,17 +89,16 @@ if (ClickChoice === choice1){
 }
 }
 
-if (peoplesChoice === 5){
-pictuers.removerEventListener ('click', handleClickOnChoice);
-alert = ('your finished with the choosing');
-for (var i=0; i < creatChoice.allImage.length){
-  var creatChoice = creatChoice.allImage[i];
-  console.log)('$ {creatChoice.name} recived ${creatChoice.click} vote with ${createChoice.view}');
-}
-  else {
-    renderChoice();
-  }
-}
+// if (peoplesChoice === 5){
+// pictuers.removerEventListener ('click', handleClickOnChoice);
+// alert = ('your finished with the choosing');
+// for (var i=0; i < creatChoice.allImage.length; i++){
+//   var creatChoice = creatChoice.allImage[i];
+//   console.log('$ {creatChoice.name} recived ${creatChoice.click} vote with ${createChoice.view}');
+// }  else {
+//     renderChoice();
+//   }
+// }
 
 
 
@@ -108,15 +108,18 @@ for (var i=0; i < creatChoice.allImage.length){
 
 /////////////////////////////////////////////////////////////// 23:20 9-23-19 demo refrece  line-86-87
 
+function populateCreatChoiceAllImage(){
+  for (var i = 0 ; i < assetArrayName.length; i ++){
+    new CreatChoice (assetArrayName[i], assetArrayPath[i]);
+  }
+}
 
-
-
-
+var assetArrayName = ['bag','banana','bathroom', 'boots', 'breakfast', 'bubblegum', 'chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissors','shark','sweep','tauntaun','unicorn','usb','water-can','wine-glass'];
 
 
 // array of images
 
-var assetArray = ['assets/bag.jpg','assets/banana.jpg','assets/bathroom.jpg', 'assets/boots.jpg', 'assets/breakfast.jpg', 'assets/bubblegum.jpg', 'assets/chair.jpg','assets/cthulhu.jpg','assets/dog-duck.jpg','assets/dragon.jpg','assets/pen.jpg','assets/pet-sweep.jpg','assets/scissors.jpg','assets/shark.jpg','assets/sweep.png','assets/tauntaun.jpg','assets/unicorn.jpg','assets/usb.gif','assets/water-can.jpg','assets/wine-glass.jpg'];
+var assetArrayPath = ['assets/bag.jpg','assets/banana.jpg','assets/bathroom.jpg', 'assets/boots.jpg', 'assets/breakfast.jpg', 'assets/bubblegum.jpg', 'assets/chair.jpg','assets/cthulhu.jpg','assets/dog-duck.jpg','assets/dragon.jpg','assets/pen.jpg','assets/pet-sweep.jpg','assets/scissors.jpg','assets/shark.jpg','assets/sweep.png','assets/tauntaun.jpg','assets/unicorn.jpg','assets/usb.gif','assets/water-can.jpg','assets/wine-glass.jpg'];
 
 
 
@@ -139,3 +142,7 @@ var assetArray = ['assets/bag.jpg','assets/banana.jpg','assets/bathroom.jpg', 'a
 // choice2.src = imageObject.allImage[randomAsset2].image;
 
 // }
+
+populateCreatChoiceAllImage();
+console.log (CreatChoice.allImage);
+renderChoice();
