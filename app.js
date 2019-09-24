@@ -88,6 +88,22 @@ if (ClickChoice === choice1){
 }
 }
 
+if (peoplesChoice === 5){
+pictuers.removerEventListener ('click', handleClickOnChoice);
+alert = ('your finished with the choosing');
+for (var i=0; i < creatChoice.allImage.length){
+  var creatChoice = creatChoice.allImage[i];
+  console.log)('$ {creatChoice.name} recived ${creatChoice.click} vote with ${createChoice.view}');
+}
+  else {
+    renderChoice();
+  }
+}
+
+
+
+
+
 //i think a switch would be more approptiate then else if  but for the sake of time  i wante to get the idea down, wmight werk
 
 /////////////////////////////////////////////////////////////// 23:20 9-23-19 demo refrece  line-86-87
