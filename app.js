@@ -65,10 +65,32 @@ choice3.src = creatChoice.allImage[choice3Index].image;
 }
 //end funtion renderchoice  end
 
-/// start   Event handler     start
+/// start   handle the user choice     start
 
 
+var handleClickOnChoice = function(event){
+  var ClickChoice = event.target.id;
+//when we clikkity
+if (ClickChoice === choice1 || choice2 || choice3 ){
 
+  peoplesChoice++
+  // we dont know which one yet buthe the count goes up
+if (ClickChoice === choice1){
+  creatChoice.allImage[choice1Index].click++;
+}else if( ClickChoice === choice2){  
+  creatChoice.allImage[choice2Index].click++;
+}else if (ClickChoice === choice3Index){
+  creatChoice.allImage[choice3Index].click++;
+ } else{
+   alert ('you didn\'t select an Image.')
+
+  }
+}
+}
+
+//i think a switch would be more approptiate then else if  but for the sake of time  i wante to get the idea down, wmight werk
+
+/////////////////////////////////////////////////////////////// 23:20 9-23-19 demo refrece  line-86-87
 
 
 
