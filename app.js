@@ -1,13 +1,13 @@
-'use strict'
+
 
 //!!!!!!is the Js file pluged into the html!!!!
 ////start     global variablils    start
 //section tittle id
 var pictures = document.getElementById('pictures');
 //image sorce 123
-var choice1 = document.getElementById('choice1')
-var choice2 = document.getElementById('choice2')
-var choice3 = document.getElementById('choice3')
+var choice1 = document.getElementById('choice1');
+var choice2 = document.getElementById('choice2');
+var choice3 = document.getElementById('choice3');
 CreatChoice.allImage = [];
 //null signifies a non set open value to the first impuut ?
 choice1.src = null;
@@ -18,7 +18,7 @@ choice3.src = null;
 var peoplesChoice = 0;
 //
 ////end   global variables  end  //
-console.log('start works')
+console.log('start works');
 //constructoer reconstruction
 //funtio name and properties (atributs 'itsname' , theimage)
 function CreatChoice (name, image){
@@ -26,16 +26,16 @@ function CreatChoice (name, image){
   this.name = name;
   this.image = image;
   this.click = 0;
-  this.view =0;
-  
- CreatChoice.allImage.push (this);
+  this.view = 0;
+
+  CreatChoice.allImage.push (this);
 }
 
 
-//random source generator from array creatchoice.allimages in constructor
+//random source generator from array CreatChoice.allimages in constructor
 function choiceGeni(){
-  var raySelect = Math.floor(Math.random()* CreatChoice.allImage.length );
-  console.log('raySelectt', raySelect)
+  var raySelect = Math.floor(Math.random() * CreatChoice.allImage.length );
+  console.log('raySelectt', raySelect);
   return raySelect;
 }
 // ///end funtion raySelect is the random image.
@@ -44,57 +44,70 @@ function choiceGeni(){
 // //start funtion render start  give the placeholders sometihging to hold
 function renderChoice(){
   do {
-  var choice1Index =choiceGeni();
-  var choice2Index =choiceGeni();
-  var choice3Index =choiceGeni();
+    var choice1Index = choiceGeni();
+    var choice2Index = choiceGeni();
+    var choice3Index = choiceGeni();
 
-  // the 3 part nolove solution needs help would a swich be apopriate. 
-}while (choice1Index === choice2Index || choice1Index === choice3Index || choice2Index === choice3Index);
+  // the 3 part nolove solution needs help would a swich be apopriate.
+  }while (choice1Index === choice2Index || choice1Index === choice3Index || choice2Index === choice3Index);
 
 
-//add one tothe views of the object Property view=0 fo rthe data exctractor peoplsChoice.
+  //add one tothe views of the object Property view=0 fo rthe data exctractor peoplsChoice.
 
-// choice1.allImage[choice1].view++;
-// choice2.allImage[choice2].view++;
-// choice3.allImage[choice3].view++;
+  // choice1.allImage[choice1].view++;
+  // choice2.allImage[choice2].view++;
+  // choice3.allImage[choice3].view++;
 
-//send it to the html to be a choice
-choice1.src = CreatChoice.allImage[choice1Index].image;
-choice2.src = CreatChoice.allImage[choice2Index].image;
-choice3.src = CreatChoice.allImage[choice3Index].image;
+  //send it to the html to be a choice
+  choice1.src = CreatChoice.allImage[choice1Index].image;
+  choice1.alt = CreatChoice.allImage[choice1Index].name;
+  choice2.src = CreatChoice.allImage[choice2Index].image;
+  choice2.alt = CreatChoice.allImage[choice2Index].name;
+  choice3.src = CreatChoice.allImage[choice3Index].image;
+  choice3.alt = CreatChoice.allImage[choice3Index].name;
 
+// console.log(event, target , id);
 }
 // //end funtion renderchoice  end
 
 // /// start   handle the user choice     start
 
 
-var handleClickOnChoice = function(event){
-  var ClickChoice = event.target.id;
-//when we clikkity
-if (ClickChoice === choice1 || choice2 || choice3 ){
-
-  peoplesChoice++
-  // we dont know which one yet buthe the count goes up
-if (ClickChoice === choice1){
-  creatChoice.allImage[choice1Index].click++;
-}else if( ClickChoice === choice2){  
-  creatChoice.allImage[choice2Index].click++;
-}else if (ClickChoice === choice3Index){
-  creatChoice.allImage[choice3Index].click++;
- } else{
-   alert ('you didn\'t select an Image.')
-
+function handleClickOnChoice(event){
+  var clickChoice = event.target.alt;
+  renderChoice();
+  console.log(clickChoice);
+  //when we clikkity
+  for (var i = 0; i < CreatChoice.allImage.length; i++){
+  console.log(CreatChoice.allImage[i].image);
+    if (clickChoice === CreatChoice.allImage[i].name){
+    CreatChoice.allImage[i].click++;
+    console.table(CreatChoice.allImage);
   }
-}
+   }
+  // if (clickChoice === choice1 || clickChoice === choice2 || clickChoice === choice3 ){
+
+  //   peoplesChoice++;
+  //   // we dont know which one yet buthe the count goes up
+  //   if (clickChoice === choice1){
+  //     CreatChoice.allImage[choice1Index].click++;
+  //   }else if( clickChoice === choice2){
+  //     CreatChoice.allImage[choice2Index].click++;
+  //   }else if (clickChoice === choice3Index){
+  //     CreatChoice.allImage[choice3Index].click++;
+  //   } else{
+  //     alert ('you didn\'t select an Image.');
+
+  //   }
+  // }
 }
 
 // if (peoplesChoice === 5){
 // pictuers.removerEventListener ('click', handleClickOnChoice);
 // alert = ('your finished with the choosing');
-// for (var i=0; i < creatChoice.allImage.length; i++){
-//   var creatChoice = creatChoice.allImage[i];
-//   console.log('$ {creatChoice.name} recived ${creatChoice.click} vote with ${createChoice.view}');
+// for (var i=0; i < CreatChoice.allImage.length; i++){
+//   var CreatChoice = CreatChoice.allImage[i];
+//   console.log('$ {CreatChoice.name} recived ${CreatChoice.click} vote with ${createChoice.view}');
 // }  else {
 //     renderChoice();
 //   }
@@ -136,7 +149,7 @@ var assetArrayPath = ['assets/bag.jpg','assets/banana.jpg','assets/bathroom.jpg'
 //   var randomAsset2= renderAsset();
 //   }while (randomAsset1 === randomAsset2);
 
-//   // set the source of the image tag 
+//   // set the source of the image tag
 
 // choice1.src=  imageObject.allImage[randomAsset1].Image;
 // choice2.src = imageObject.allImage[randomAsset2].image;
@@ -146,3 +159,4 @@ var assetArrayPath = ['assets/bag.jpg','assets/banana.jpg','assets/bathroom.jpg'
 populateCreatChoiceAllImage();
 console.log (CreatChoice.allImage);
 renderChoice();
+pictures.addEventListener('click', handleClickOnChoice);
