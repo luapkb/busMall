@@ -126,7 +126,32 @@ function handleClickOnChoice(event){
   }
 }
 
+function updateStorage(){
+  var jasonString = JSON.stringify(vote);
+  localStorage.setItem('vote', jsonString;) 
+  }
 
+  function upBuildGraph(){
+    var data =localStorage.getItem(vote);
+    var parsedData =JSON.parse(data);
+
+    vew = parsedData;
+    
+    console.log (vew);
+    
+    ????renderOder()/////??graph??////
+  }
+
+function upBuildGraphAlt(){
+  var data = localStorage.getItem(CreatChoice);
+  var parsedData =JSON.parse(data);
+
+  for(var i=0; i<parsedData.lenth; i++) {
+    new CreatChoice(parsedData[i].name ,(parsedData[i].image ,(parsedData[i].click , (parsedData[i].view);
+
+    renderOder();/////??????
+  }
+}
 
 function colectInfo(){
   for ( var i = 0; i < CreatChoice.allImage.length; i++){
@@ -175,17 +200,6 @@ function chartData(){
     },
   });
 }
-//   }
-// }
-
-
-
-
-
-
-
-
-
 
 
 
