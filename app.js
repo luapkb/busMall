@@ -34,12 +34,12 @@ console.log('start works');
 
 //function name and properties (atributs 'itsname' , theimage)
 
-function CreatChoice (name, image){
+function CreatChoice (name, image, click = 0, view = 0){
   //properties in object
   this.name = name;
   this.image = image;
-  this.click = 0;
-  this.view = 0;
+  this.click = click;
+  this.view = view;
 
   CreatChoice.allImage.push (this);
 
@@ -116,13 +116,20 @@ function handleClickOnChoice(event){
       if (clickChoice === CreatChoice.allImage[i].name){
         CreatChoice.allImage[i].click++;
         peoplesChoice++;
-      // console.table(CreatChoice.allImage);
+        // console.table(CreatChoice.allImage);
       }
     }
   } else {
     alert ('thanks for looking');
     colectInfo();
     chartData();
+  }
+}
+function colectInfo(){
+  for ( var i = 0; i < CreatChoice.allImage.length; i++){
+    click.push(CreatChoice.allImage[i].click);
+    view.push(CreatChoice.allImage[i].view);
+    nameImage.push(CreatChoice.allImage[i].name);
   }
 }
 
@@ -153,13 +160,6 @@ function upBuildGraphAlt(){
   }
 }
 
-function colectInfo(){
-  for ( var i = 0; i < CreatChoice.allImage.length; i++){
-    click.push(CreatChoice.allImage[i].click);
-    view.push(CreatChoice.allImage[i].view);
-    nameImage.push(CreatChoice.allImage[i].name);
-  }
-}
 
 function chartData(){
   var ctx = document.getElementById('myChart').getContext('2d');
