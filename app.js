@@ -8,14 +8,17 @@ var assetArrayName = ['bag','banana','bathroom', 'boots', 'breakfast', 'bubblegu
 
 // array of images
 var assetArrayPath = ['assets/bag.jpg','assets/banana.jpg','assets/bathroom.jpg', 'assets/boots.jpg', 'assets/breakfast.jpg', 'assets/bubblegum.jpg', 'assets/chair.jpg','assets/cthulhu.jpg','assets/dog-duck.jpg','assets/dragon.jpg','assets/pen.jpg','assets/pet-sweep.jpg','assets/scissors.jpg','assets/shark.jpg','assets/sweep.png','assets/tauntaun.jpg','assets/unicorn.jpg','assets/usb.gif','assets/water-can.jpg','assets/wine-glass.jpg'];
-
+////// chartData var
+var click = [];
+var view = [];
+var nameImage = [];
 //section tittle id
 var pictures = document.getElementById('pictures');
 //image ID (sorce 123)
 var choice1 = document.getElementById('choice1');
 var choice2 = document.getElementById('choice2');
 var choice3 = document.getElementById('choice3');
-
+var ctx = document.getElementById(myChart);
 CreatChoice.pics = [choice1 , choice2 , choice3];
 
 CreatChoice.allImage = [];
@@ -47,39 +50,17 @@ function populateCreatChoiceAllImage(){
     new CreatChoice (assetArrayName[i], assetArrayPath[i]);
   }
 }
-///prevent the same photos from showing upsequentialy 
+///prevent the same photos from showing upsequentialy
 
 
 //random source generator from array CreatChoice.allimages in constructor
 function choiceGeni(){
   var raySelect = Math.floor(Math.random() * CreatChoice.allImage.length );
-  console.log('raySelectt', raySelect);
+  // console.log('raySelectt', raySelect);
   return raySelect;
 }
 // ///end funtion raySelect is the random image.
 
-// // do somethiig with that photo
-// //start funtion render start  give the placeholders sometihging to hold
-function renderChoice(){
-  do {
-    var choice1Index = choiceGeni();
-    var choice2Index = choiceGeni();
-    var choice3Index = choiceGeni();
-   //make suer that none of the images are the same
-  }while (choice1Index === choice2Index || choice1Index === choice3Index || choice2Index === choice3Index);
-}
-//   send it to the html to be a choice
-//   choice1.src = CreatChoice.allImage[choice1Index].image;
-//   choice1.alt = CreatChoice.allImage[choice1Index].name;
-//   choice2.src = CreatChoice.allImage[choice2Index].image;
-//   choice2.alt = CreatChoice.allImage[choice2Index].name;
-//   choice3.src = CreatChoice.allImage[choice3Index].image;
-//   choice3.alt = CreatChoice.allImage[choice3Index].name;
-//   populat view count
-//   CreatChoice.allImage[choice1Index].view++;
-//   CreatChoice.allImage[choice2Index].view++;
-//   CreatChoice.allImage[choice3Index].view++;
-// }
 
 ///////////unique array from class(Ron)
 // //uniqueArray is where you will store the unique numbers that displayPics() creates in the while loops.
@@ -93,23 +74,23 @@ function displayPic() {
   while(uniqueArray.length < 6) {
     var random = choiceGeni();
     while(!uniqueArray.includes(random)) {
-      console.log('building uniqueArray:  ', uniqueArray);
+      // console.log('building uniqueArray:  ', uniqueArray);
       uniqueArray.push(random);
     }
   }
-  console.log('uniqueArray completed!!: ', uniqueArray);
+  // console.log('uniqueArray completed!!: ', uniqueArray);
   for( var i = 0; i < uniqueArray.length; i++ ) {
   //value of the first index of the array is removed and set as the variable 'temp' and replaced at each iteration of the loop.
     var temp = uniqueArray.shift();
-    console.log('The Temp is #: ', temp);
+    // console.log('The Temp is #: ', temp);
     //sets the path of the product at the current index.
     CreatChoice.pics[i].src = CreatChoice.allImage[temp].image;
     //sets the id of the CreatChoice at the current index.
     CreatChoice.pics[i].id = CreatChoice.allImage[temp].name;
-   CreatChoice.allImage[temp].views += 1;
-    console.log('CreatChoice.all[temp].image: ',CreatChoice.allImage[temp].image);
+    CreatChoice.allImage[temp].view += 1;
+    // console.log('CreatChoice.all[temp].image: ',CreatChoice.allImage[temp].image);
   }
-  console.log('remaining values in uniqueArray: ', uniqueArray);
+  // console.log('remaining values in uniqueArray: ', uniqueArray);
 }
 ///////////unique array from class(Ron)
 
@@ -121,30 +102,83 @@ function displayPic() {
 
 
 function handleClickOnChoice(event){
-  var clickChoice = event.target.alt;
-  renderChoice();
-  console.log(clickChoice);
-  //when we clikkity
-  for (var i = 0; i < CreatChoice.allImage.length; i++){
-    console.log(CreatChoice.allImage[i].image);
+  event.preventDefault();
+  if (peoplesChoice !== 5) {
+    var clickChoice = event.target.id;
+    displayPic();
+    // console.log(clickChoice);
+    //when we clikkity
+    for (var i = 0; i < CreatChoice.allImage.length; i++){
+    // console.log(CreatChoice.allImage[i].image);
     //populat click count
-    if (clickChoice === CreatChoice.allImage[i].name){
-      CreatChoice.allImage[i].click++;
-      console.table(CreatChoice.allImage);
+    // console.log(clickChoice);
+    // console.log(CreatChoice.allImage[i].name)
+      if (clickChoice === CreatChoice.allImage[i].name){
+        CreatChoice.allImage[i].click++;
+        peoplesChoice++;
+      // console.table(CreatChoice.allImage);
+      }
     }
+  } else {
+    alert ('thanks for looking');
+    colectInfo();
+    chartData();
   }
 }
-//     alert ('you didn\'t select an Image.');
 
+
+
+function colectInfo(){
+  for ( var i = 0; i < CreatChoice.allImage.length; i++){
+    click.push(CreatChoice.allImage[i].click);
+    view.push(CreatChoice.allImage[i].view);
+    nameImage.push(CreatChoice.allImage[i].name);
+  }
+}
+
+function chartData(){
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: nameImage,
+      datasets: [{
+        label: '# of Votes',
+        data: click,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1,
+      }],
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+          },
+        }],
+      },
+    },
+  });
+}
 //   }
 // }
 
 
-// if (peoplesChoice === 25){
-// pictuers.removerEventListener ('click', handleClickOnChoice);
-// alert = ('your finished with the choosing');
-//   }
-// }
 
 
 
@@ -158,6 +192,5 @@ function handleClickOnChoice(event){
 
 populateCreatChoiceAllImage();
 console.table (CreatChoice.allImage);
-renderChoice();
 pictures.addEventListener('click', handleClickOnChoice);
 displayPic();
