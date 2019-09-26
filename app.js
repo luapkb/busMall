@@ -103,7 +103,7 @@ function displayPic() {
 
 function handleClickOnChoice(event){
   event.preventDefault();
-  if (peoplesChoice !== 5) {
+  if (peoplesChoice !== 25) {
     var clickChoice = event.target.id;
     displayPic();
     // console.log(clickChoice);
