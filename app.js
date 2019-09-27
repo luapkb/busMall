@@ -89,6 +89,7 @@ function displayPic() {
     CreatChoice.pics[i].id = CreatChoice.allImage[temp].name;
     CreatChoice.allImage[temp].view += 1;
     // console.log('CreatChoice.all[temp].image: ',CreatChoice.allImage[temp].image);
+    // updateStorage();
   }
   // console.log('remaining values in uniqueArray: ', uniqueArray);
 }
@@ -103,7 +104,7 @@ function displayPic() {
 
 function handleClickOnChoice(event){
   event.preventDefault();
-  if (peoplesChoice !== 25) {
+  if (peoplesChoice !== 5) {
     var clickChoice = event.target.id;
     displayPic();
     // console.log(clickChoice);
@@ -117,12 +118,16 @@ function handleClickOnChoice(event){
         CreatChoice.allImage[i].click++;
         peoplesChoice++;
         // console.table(CreatChoice.allImage);
+
+
       }
     }
   } else {
     alert ('thanks for looking');
     colectInfo();
     chartData();
+    updateStorage();
+    upBuildGraph();
   }
 }
 function colectInfo(){
@@ -134,32 +139,23 @@ function colectInfo(){
 }
 
 function updateStorage(){
-  var jasonString = JSON.stringify(vote);
-  localStorage.setItem('vote', jsonString;) 
-  }
-
-  function upBuildGraph(){
-    var data =localStorage.getItem(vote);
-    var parsedData =JSON.parse(data);
-
-    vew = parsedData;
-    
-    console.log (vew);
-    
-    ????renderOder()/////??graph??////
-  }
-
-function upBuildGraphAlt(){
-  var data = localStorage.getItem(CreatChoice);
-  var parsedData =JSON.parse(data);
-
-  for(var i=0; i<parsedData.lenth; i++) {
-    new CreatChoice(parsedData[i].name ,(parsedData[i].image ,(parsedData[i].click , (parsedData[i].view);
-
-    renderOder();/////??????
-  }
+  ///deploied in displayPic
+  var jasonVoteString = JSON.stringify(CreatChoice.allImage);
+  localStorage.setItem('vote', jasonVoteString);
 }
 
+function upBuildGraph(){
+  var data = localStorage.getItem('vote');
+  var parsedData = JSON.parse(data);
+console.log(parsedData);
+
+
+// for (var i=0; i< .length; i++){
+//   new CreatChoice(parcedData[i].name,)
+// }
+  
+//take parsed data and ++ to new data 
+}
 
 function chartData(){
   var ctx = document.getElementById('myChart').getContext('2d');
@@ -205,6 +201,6 @@ function chartData(){
 
 
 populateCreatChoiceAllImage();
-console.table (CreatChoice.allImage);
 pictures.addEventListener('click', handleClickOnChoice);
 displayPic();
+
