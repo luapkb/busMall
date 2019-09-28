@@ -23,9 +23,9 @@ CreatChoice.pics = [choice1 , choice2 , choice3];
 
 CreatChoice.allImage = [];
 //null signifies a non set open value to the first impuut ?
-choice1.src = null;
-choice2.src = null;
-choice3.src = null;
+// choice1.src = null;
+// choice2.src = null;
+// choice3.src = null;
 //datta extractor
 var peoplesChoice = 0;
 //
@@ -80,7 +80,7 @@ function displayPic() {
   }
   // console.log('uniqueArray completed!!: ', uniqueArray);
   for( var i = 0; i < uniqueArray.length; i++ ) {
-  //value of the first index of the array is removed and set as the variable 'temp' and replaced at each iteration of the loop.
+    //value of the first index of the array is removed and set as the variable 'temp' and replaced at each iteration of the loop.
     var temp = uniqueArray.shift();
     // console.log('The Temp is #: ', temp);
     //sets the path of the product at the current index.
@@ -110,10 +110,10 @@ function handleClickOnChoice(event){
     // console.log(clickChoice);
     //when we clikkity
     for (var i = 0; i < CreatChoice.allImage.length; i++){
-    // console.log(CreatChoice.allImage[i].image);
-    //populat click count
-    // console.log(clickChoice);
-    // console.log(CreatChoice.allImage[i].name)
+      // console.log(CreatChoice.allImage[i].image);
+      //populat click count
+      // console.log(clickChoice);
+      // console.log(CreatChoice.allImage[i].name)
       if (clickChoice === CreatChoice.allImage[i].name){
         CreatChoice.allImage[i].click++;
         peoplesChoice++;
@@ -127,7 +127,6 @@ function handleClickOnChoice(event){
     colectInfo();
     chartData();
     updateStorage();
-    upBuildGraph();
   }
 }
 function colectInfo(){
@@ -146,15 +145,17 @@ function updateStorage(){
 
 function upBuildGraph(){
   var data = localStorage.getItem('vote');
+  console.log(data);
   var parsedData = JSON.parse(data);
-console.log(parsedData);
+  console.log(parsedData);
+  CreatChoice.allImage = parsedData;
+console.log(CreatChoice.allImage);
 
+  // for (var i=0; i< .length; i++){
+  //   new CreatChoice(parcedData[i].name,)
+  // }
 
-// for (var i=0; i< .length; i++){
-//   new CreatChoice(parcedData[i].name,)
-// }
-  
-//take parsed data and ++ to new data 
+//take parsed data and ++ to new data
 }
 
 function chartData(){
@@ -164,7 +165,7 @@ function chartData(){
     data: {
       labels: nameImage,
       datasets: [{
-        label: '# of Votes',
+        label: '# of clicks',
         data: click,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
@@ -172,15 +173,92 @@ function chartData(){
           'rgba(255, 206, 86, 0.2)',
           'rgba(75, 192, 192, 0.2)',
           'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)'
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)'
+        ],
+        borderWidth: 1,
+      },
+      {
+        label: '# of views',
+        data: view,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)'
         ],
         borderWidth: 1,
       }],
@@ -197,10 +275,18 @@ function chartData(){
   });
 }
 
+function pageStart(){
+  if (localStorage.getItem('vote')){
+    upBuildGraph();
+    displayPic();
 
+  }else {
+    populateCreatChoiceAllImage();
+    displayPic();
 
+  }
+}
 
-populateCreatChoiceAllImage();
+pageStart();
 pictures.addEventListener('click', handleClickOnChoice);
-displayPic();
 
