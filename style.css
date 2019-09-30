@@ -1,0 +1,22 @@
+body{
+  background-color: rgb(134, 158, 158);
+  width: 95%;
+  padding: 2%;
+  
+}
+section{
+  margin: 30%, 10px, 30%, 0;
+  width: 100%;
+  display: inline-block;
+}
+img{
+
+  width: 32%;
+  padding: 5px;
+  border: solid, 5px;
+
+}
+
+canvas{
+  background-color: lightcyan
+}
