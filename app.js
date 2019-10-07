@@ -123,7 +123,7 @@ function handleClickOnChoice(event){
       }
     }
   } else {
-    alert ('thanks for looking');
+    alert ('thanks for looking, your results are in a graph below.');
     colectInfo();
     chartData();
     updateStorage();

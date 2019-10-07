@@ -18,5 +18,8 @@ img{
 }
 
 canvas{
-  background-color: lightcyan
+  background-color:  lightcyan;
+  width: 600px;
+  height: 400;
+  
 }
