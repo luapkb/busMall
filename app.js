@@ -118,12 +118,12 @@ function handleClickOnChoice(event){
         CreatChoice.allImage[i].click++;
         peoplesChoice++;
         // console.table(CreatChoice.allImage);
-
+        //this is a change
 
       }
     }
   } else {
-    alert ('thanks for looking');
+    alert ('thanks for looking, your results are in a graph below.');
     colectInfo();
     chartData();
     updateStorage();
