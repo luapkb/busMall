@@ -118,7 +118,7 @@ function handleClickOnChoice(event){
         CreatChoice.allImage[i].click++;
         peoplesChoice++;
         // console.table(CreatChoice.allImage);
-
+        //this is a change
 
       }
     }
